@@ -1,0 +1,21 @@
+<div class="container user-list">
+    <h1>User List</h1>
+    <ul>
+    <% @users.each do |user| %>
+        <li>
+            <div class="invite-user">
+                <div>
+                    <%= user.name %>
+                </div>
+                <div>
+                    <% if Registration.exists?(user:user, event:@event.id)%>
+                        <%=Registration.find_by(user:user).status%>
+                    <% else %>
+                        <%#= link_to "Send Invite", event_user_path(@event.id, user: @user) %>
+                    <% end %>
+                </div>
+            </div>
+        </li>
+    <% end %>
+    </ul>
+</div>
